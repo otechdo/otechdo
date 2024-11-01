@@ -6,7 +6,7 @@
     "url": "https://github.com/otechdo/otechdo/issues"
   },
   "homepage": "https://github.com/otechdo/otechdo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/otechdo.ts",
   "contributors": ["Willy Micieli"],
   "files": [
