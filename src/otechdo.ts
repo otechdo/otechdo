@@ -3,7 +3,7 @@
  * It allows adding styles, managing classes, manipulating DOM content, and attaching events.
  */
 export class Otechdo {
-    private element: HTMLElement;
+    element: HTMLElement;
 
     /**
      * Initializes the `Otechdo` class with a specified HTML element.
@@ -1787,33 +1787,6 @@ export class Otechdo {
     }
 
     /**
-     * Plays a sound file when a specified event is triggered.
-     * @param event - The event to trigger the sound (e.g., "click").
-     * @param audioUrl - URL of the audio file.
-     * @returns The `Otechdo` instance for chaining.
-     */
-    playSoundOnEvent(event: string, audioUrl: string): this {
-        const audio = new Audio(audioUrl);
-        this.on(event, () => audio.play());
-        return this;
-    }
-
-    /**
-     * Plays a music file
-     * @param audioUrl - URL of the audio file.
-     * @returns The `Otechdo` instance for chaining.
-     */
-    play(audioUrl: string): this {
-        const audio = new Audio(audioUrl);
-        audio.play().then(()=> {
-            return this;
-        }).finally(()=> {
-            return this;
-        });
-        return this;
-    }
-
-    /**
      * Rotates the element 360 degrees on click.
      * @param duration - Duration of the rotation in milliseconds.
      * @returns The `Otechdo` instance for chaining.
@@ -3138,32 +3111,6 @@ export class Otechdo {
     setVideoPoster(videoElement: HTMLVideoElement, posterUrl: string): void {
         videoElement.poster = posterUrl;
     }
-    /**
-     * Auto-plays and mutes a video when it becomes visible in the viewport.
-     * @param videoElement - The video element.
-     */
-    autoPlayAndMuteVideo(videoElement: HTMLVideoElement): void {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    videoElement.muted = true;
-                    videoElement.play();
-                } else {
-                    videoElement.pause();
-                }
-            });
-        });
-        observer.observe(videoElement);
-    }
-
-    /**
-     * Plays the video on hover and pauses it when the mouse leaves.
-     * @param videoElement - The video element.
-     */
-    playVideoOnHover(videoElement: HTMLVideoElement): void {
-        videoElement.onmouseenter = () => videoElement.play();
-        videoElement.onmouseleave = () => videoElement.pause();
-    }
 
 
     /**
@@ -3851,3 +3798,28 @@ export class Otechdo {
         return this;
     }
 }
+
+/**
+ *
+ * Manipulate the elemement
+ *
+ * @param e `HTMLElement`
+ *
+ */
+export const app = (e:HTMLElement): Otechdo => {
+    return new Otechdo(e);
+};
+
+/**
+ *
+ * Select an element if exist to manipulate it
+ *
+ * @param selector `string`
+ *
+ */
+export const o = (selector:string): Otechdo => {
+    const el = document.querySelector(selector) as HTMLElement ?? document.createElement("div");
+    return new Otechdo(el);
+};
+
+
