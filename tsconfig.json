@@ -9,9 +9,7 @@
     "outDir": "dist"
   },
   "include": [
-    "src/core/**/*",
-    "src/web/**/*",
-    "src/desktop/**/*"
+    "src",
   ],
   "exclude": [
     "node_modules"

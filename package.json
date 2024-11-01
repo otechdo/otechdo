@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:web": "webpack --config webpack/webpack.web.js",
-    "build:desktop": "webpack --config webpack/webpack.desktop.js",
-    "build": "webpack --config webpack/webpack.web.js && webpack --config webpack/webpack.desktop.js",
+    "build": "webpack --config webpack/webpack.web.js",
     "test": "jest"
   },
   "author": "",
