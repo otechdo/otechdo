@@ -1,8 +1,8 @@
 {
-  "entryPoints": ["src/core/Core.ts"],
+  "entryPoints": ["src/index.ts"],
   "out": "docs",
   "includeVersion": true,
-  "name": "Core Documentation",
+  "name": "Otechdo Documentation",
   "exclude": ["**/__tests__/**"],
   "excludePrivate": true,
   "excludeProtected": true,

@@ -1,12 +1,12 @@
 /**
- * The `Core` class provides a fluent API for manipulating a single HTML element.
+ * The `Otechdo` class provides a fluent API for manipulating a single HTML element.
  * It allows adding styles, managing classes, manipulating DOM content, and attaching events.
  */
-export class Core {
+export class Otechdo {
     private element: HTMLElement;
 
     /**
-     * Initializes the `Core` class with a specified HTML element.
+     * Initializes the `Otechdo` class with a specified HTML element.
      * @param element - The HTML element to be manipulated.
      */
     constructor(element: HTMLElement) {
@@ -20,7 +20,7 @@ export class Core {
     /**
      * Adds one or more CSS classes to the element.
      * @param classNames - The names of the classes to add.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     addClass(...classNames: string[]): this {
         this.element.classList.add(...classNames);
@@ -30,7 +30,7 @@ export class Core {
     /**
      * Removes one or more CSS classes from the element.
      * @param classNames - The names of the classes to remove.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     removeClass(...classNames: string[]): this {
         this.element.classList.remove(...classNames);
@@ -40,7 +40,7 @@ export class Core {
     /**
      * Toggles (adds or removes) a CSS class on the element.
      * @param className - The name of the class to toggle.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleClass(className: string): this {
         this.element.classList.toggle(className);
@@ -54,7 +54,7 @@ export class Core {
     /**
      * Applies CSS styles to the element.
      * @param styles - An object containing key-value pairs for styles to apply.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     css(styles: { [key: string]: string | number }): this {
         Object.entries(styles).forEach(([key, value]) => {
@@ -71,7 +71,7 @@ export class Core {
      * Sets or retrieves an attribute of the element.
      * @param attribute - The name of the attribute.
      * @param value - The value of the attribute (optional).
-     * @returns The `Core` instance for chaining if setting, or the attribute value if getting.
+     * @returns The `Otechdo` instance for chaining if setting, or the attribute value if getting.
      */
     attr(attribute: string, value?: string): this {
         this.element.setAttribute(attribute, value ?? "");
@@ -81,7 +81,7 @@ export class Core {
     /**
      * Removes a specified attribute from the element.
      * @param attribute - The name of the attribute to remove.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     removeAttr(attribute: string): this {
         this.element.removeAttribute(attribute);
@@ -96,7 +96,7 @@ export class Core {
      * Adds an event listener to the element.
      * @param event - The event type (e.g., 'click', 'mouseover').
      * @param handler - The event handler function.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     on(event: string, handler: EventListener): this {
         this.element.addEventListener(event, handler);
@@ -107,7 +107,7 @@ export class Core {
      * Removes an event listener from the element.
      * @param event - The event type.
      * @param handler - The event handler function.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     off(event: string, handler: EventListener): this {
         this.element.removeEventListener(event, handler);
@@ -128,14 +128,14 @@ export class Core {
 
     /**
      * Gets or sets the text content of the element.
-     * @returns The text content if getting, or the `Core` instance if setting.
+     * @returns The text content if getting, or the `Otechdo` instance if setting.
      */
     text(): string {
         return this.element.textContent || "";
     }
     /**
      * Toggles the visibility of the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleVisibility(): this {
         this.element.style.display = this.element.style.display === 'none' ? 'block' : 'none';
@@ -154,7 +154,7 @@ export class Core {
     /**
      * Replaces the current element with a new element.
      * @param newElement - The HTML element to replace with.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     replaceWith(newElement: HTMLElement): this {
         this.element.replaceWith(newElement);
@@ -170,7 +170,7 @@ export class Core {
     }
     /**
      * Smoothly scrolls the element into view.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scroll(): this {
         this.element.scrollIntoView({ behavior: "smooth" });
@@ -193,7 +193,7 @@ export class Core {
     /**
      * Reattaches a detached element to a new parent.
      * @param parent - The new parent element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     reattach(parent: HTMLElement): this {
         parent.appendChild(this.element);
@@ -203,7 +203,7 @@ export class Core {
      * Adds an event listener that triggers only once.
      * @param event - The event type (e.g., 'click', 'mouseover').
      * @param handler - The event handler function.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     once(event: string, handler: EventListener): this {
         const onceHandler = (e: Event) => {
@@ -219,7 +219,7 @@ export class Core {
      * @param event - The event type (e.g., 'scroll', 'resize').
      * @param handler - The event handler function.
      * @param limit - The time limit in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     throttle(event: string, handler: EventListener, limit: number): this {
         let lastCall = 0;
@@ -240,7 +240,7 @@ export class Core {
      * @param event - The event type (e.g., 'input', 'resize').
      * @param handler - The event handler function.
      * @param delay - The debounce delay in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     debounce(event: string, handler: EventListener, delay: number): this {
         let timeoutId: number | undefined;
@@ -255,7 +255,7 @@ export class Core {
      * Toggles a boolean attribute on the element.
      * @param attribute - The attribute to toggle.
      * @param force - Whether to add or remove the attribute.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleAttr(attribute: string, force?: boolean): this {
         if (typeof force === "boolean") {
@@ -269,7 +269,7 @@ export class Core {
     }
     /**
      * Disables the element by adding a `disabled` attribute.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     disable(): this {
         this.element.setAttribute("disabled", "true");
@@ -278,7 +278,7 @@ export class Core {
 
     /**
      * Enables the element by removing the `disabled` attribute.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     enable(): this {
         this.element.removeAttribute("disabled");
@@ -286,22 +286,10 @@ export class Core {
     }
 
     /**
-     * Replaces the element's content with sanitized HTML.
-     * @param html - The HTML string to insert.
-     * @returns The `Core` instance for chaining.
-     */
-    safeHtml(html: string): this {
-        const template = document.createElement("template");
-        template.innerHTML = html.trim();
-        this.element.replaceChildren(...template.content.childNodes);
-        return this;
-    }
-
-    /**
      * Adds a CSS class to the element after a delay.
      * @param className - The class name to add.
      * @param delay - The delay in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     addClassDelayed(className: string, delay: number): this {
         setTimeout(() => this.addClass(className), delay);
@@ -312,7 +300,7 @@ export class Core {
      * @param property - The CSS property to animate.
      * @param value - The end value for the property.
      * @param duration - The duration of the animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     animate(property: string, value: string | number, duration: number): this {
         this.element.style.transition = `${property} ${duration}ms`;
@@ -323,7 +311,7 @@ export class Core {
 
     /**
      * Toggles the element into or out of fullscreen.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleFullscreen(): this {
         if (!document.fullscreenElement) {
@@ -338,7 +326,7 @@ export class Core {
      * Sets ARIA attributes for the element.
      * @param label - The accessible label.
      * @param role - The ARIA role (optional).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     aria(label: string, role?: string): this {
         this.element.setAttribute("aria-label", label);
@@ -350,7 +338,7 @@ export class Core {
     /**
      * Toggles fade in/out on the element.
      * @param duration - The animation duration in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     fadeToggle(duration: string = "400"): this {
         if (this.element.style.display === "none" || this.element.style.opacity === "0") {
@@ -362,7 +350,7 @@ export class Core {
     /**
      * Wraps the current element with a new element.
      * @param wrapper - The HTML element to wrap around the current element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     wrap(wrapper: HTMLElement): this {
         this.element.parentNode?.insertBefore(wrapper, this.element);
@@ -371,7 +359,7 @@ export class Core {
     }
     /**
      * Unwraps the current element from its parent.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     unwrap(): this {
         const parent = this.element.parentNode as HTMLElement;
@@ -386,7 +374,7 @@ export class Core {
      * Adds a class temporarily to create a flash effect.
      * @param className - The class to add.
      * @param duration - Duration to keep the class in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     tempo(className: string, duration: number = 500): this {
         this.addClass(className);
@@ -397,7 +385,7 @@ export class Core {
     /**
      * Sets multiple attributes on the element.
      * @param attributes - An object containing attribute names and values.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setAttributes(attributes: { [key: string]: string }): this {
         Object.entries(attributes).forEach(([key, value]) => {
@@ -409,7 +397,7 @@ export class Core {
      * Toggles the text content of the element between two values.
      * @param text1 - The first text value.
      * @param text2 - The second text value.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleText(text1: string, text2: string): this {
         this.element.textContent = this.element.textContent === text1 ? text2 : text1;
@@ -426,7 +414,7 @@ export class Core {
     }
     /**
      * Enables the element to be draggable.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     draggable(): this {
         this.element.setAttribute("draggable", "true");
@@ -435,7 +423,7 @@ export class Core {
 
     /**
      * Disables dragging for the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     undraggable(): this {
         this.element.removeAttribute("draggable");
@@ -446,7 +434,7 @@ export class Core {
      * Inserts HTML at a specific position within the element.
      * @param html - The HTML content to insert.
      * @param position - The position (e.g., "beforebegin", "afterbegin", "beforeend", "afterend").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     set(html: string, position: InsertPosition): this {
         this.element.insertAdjacentHTML(position, html);
@@ -456,7 +444,7 @@ export class Core {
     /**
      * Toggles the disabled state of a button element.
      * @param isDisabled - Whether to disable or enable the button.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleButton(isDisabled: boolean): this {
         if (this.element.tagName.toLowerCase() === 'button') {
@@ -466,7 +454,7 @@ export class Core {
     }
     /**
      * Copies the text content of the element to the clipboard.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     copyTextToClipboard(): this {
         navigator.clipboard.writeText(this.element.textContent || "");
@@ -476,7 +464,7 @@ export class Core {
     /**
      * Adds multiple event listeners to the element.
      * @param events - An array of objects with event type and handler.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onMultiple(events: { event: string; handler: EventListener }[]): this {
         events.forEach(({ event, handler }) => this.on(event, handler));
@@ -485,7 +473,7 @@ export class Core {
     /**
      * Adds a tooltip to the element.
      * @param message - The tooltip text to display.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     tooltip(message: string): this {
         this.element.setAttribute("title", message);
@@ -502,23 +490,23 @@ export class Core {
 
     /**
      * Gets the next sibling of the current element.
-     * @returns A new `Core` instance for the next sibling.
+     * @returns A new `Otechdo` instance for the next sibling.
      */
-    next(): Core {
-        return new Core(this.element.nextElementSibling as HTMLElement ?? this.element);
+    next(): Otechdo {
+        return new Otechdo(this.element.nextElementSibling as HTMLElement ?? this.element);
     }
 
     /**
      * Gets the previous sibling of the current element.
-     * @returns A new `Core` instance for the previous sibling.
+     * @returns A new `Otechdo` instance for the previous sibling.
      */
-    prev(): Core {
-        return new Core(this.element.previousElementSibling as HTMLElement ?? this.element);
+    prev(): Otechdo {
+        return new Otechdo(this.element.previousElementSibling as HTMLElement ?? this.element);
     }
 
     /**
      * Scrolls the element's content to the bottom.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollToBottom(): this {
         this.element.scrollTop = this.element.scrollHeight;
@@ -527,7 +515,7 @@ export class Core {
 
     /**
      * Sets focus on the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     focus(): this {
         this.element.focus();
@@ -536,7 +524,7 @@ export class Core {
 
     /**
      * Removes focus from the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     blur(): this {
         this.element.blur();
@@ -553,7 +541,7 @@ export class Core {
 
     /**
      * Smoothly scrolls the page to the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollTo(): this {
         this.element.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -564,7 +552,7 @@ export class Core {
      * Shows a temporary tooltip on the element.
      * @param message - The tooltip message to display.
      * @param duration - The duration in milliseconds to show the tooltip.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     tempTooltip(message: string, duration: number = 2000): this {
         const tooltip = document.createElement("div");
@@ -587,7 +575,7 @@ export class Core {
     /**
      * Waits for the end of a CSS transition and then executes a callback.
      * @param callback - The function to execute after the transition ends.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onTransitionEnd(callback: () => void): this {
         const handler = () => {
@@ -602,7 +590,7 @@ export class Core {
      * Toggles an attribute based on a condition.
      * @param attribute - The name of the attribute.
      * @param state - Boolean indicating whether to add or remove the attribute.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleAttribute(attribute: string, state: boolean): this {
         if (state) {
@@ -617,7 +605,7 @@ export class Core {
      * Temporarily highlights the element with a background color.
      * @param color - The highlight color.
      * @param duration - The duration of the highlight in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     highlight(color: string = "yellow", duration: number = 500): this {
         const originalColor = this.element.style.backgroundColor;
@@ -631,7 +619,7 @@ export class Core {
     /**
      * Applies multiple CSS styles to the element.
      * @param styles - An object containing CSS property-value pairs.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     style(styles: { [property: string]: string | number }): this {
         Object.entries(styles).forEach(([property, value]) => {
@@ -641,7 +629,7 @@ export class Core {
     }
     /**
      * Disables user interaction by adding an overlay.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     disableInteraction(): this {
         const overlay = document.createElement("div");
@@ -659,7 +647,7 @@ export class Core {
 
     /**
      * Enables user interaction by removing the overlay.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     enableInteraction(): this {
         const overlay = this.element.querySelector("div[style*='position: absolute']");
@@ -669,7 +657,7 @@ export class Core {
 
     /**
      * Adds a shake animation to the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     shake(): this {
         this.element.style.animation = "shake 0.5s";
@@ -681,7 +669,7 @@ export class Core {
     /**
      * Adds a pulsing animation to the element.
      * @param duration - The duration of each pulse in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     pulse(duration: number = 500): this {
         this.element.style.animation = `pulse ${duration}ms infinite alternate`;
@@ -693,7 +681,7 @@ export class Core {
     }
     /**
      * Centers the element horizontally and vertically within its parent.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     center(): this {
         this.element.style.position = "absolute";
@@ -707,7 +695,7 @@ export class Core {
      * Cycles the text content of the element through an array of values.
      * @param values - The array of text values to cycle through.
      * @param interval - The interval duration in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     cycleText(values: string[], interval: number = 1000): this {
         let index = 0;
@@ -721,7 +709,7 @@ export class Core {
     /**
      * Adds a resize observer to the element to track size changes.
      * @param callback - A function to call when the element is resized.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onResize(callback: ResizeObserverCallback): this {
         const resizeObserver = new ResizeObserver(callback);
@@ -732,7 +720,7 @@ export class Core {
      * Toggles multiple CSS classes on the element.
      * @param classes - Array of class names to toggle.
      * @param force - Optional boolean to force add/remove.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleClasses(classes: string[], force?: boolean): this {
         classes.forEach(className => {
@@ -744,7 +732,7 @@ export class Core {
      * Dispatches a custom event with attached detail data.
      * @param eventType - The custom event type.
      * @param detail - The additional data to attach to the event.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     triggerEvent(eventType: string, detail: any): this {
         const event = new CustomEvent(eventType, { detail });
@@ -754,7 +742,7 @@ export class Core {
     /**
      * Reveals the element with a fade-in and scale-up animation.
      * @param duration - Animation duration in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     reveal(duration: number = 500): this {
         this.element.style.opacity = "0";
@@ -770,7 +758,7 @@ export class Core {
     /**
      * Executes a callback when the element enters or exits the viewport.
      * @param callback - The function to execute with the visibility state (`true` for visible).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onVisibilityChange(callback: (isVisible: boolean) => void): this {
         const observer = new IntersectionObserver(entries => {
@@ -782,7 +770,7 @@ export class Core {
     /**
      * Loads HTML content from a URL and inserts it into the element.
      * @param url - The URL to load the content from.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     load(url: string): this {
         fetch(url)
@@ -805,7 +793,7 @@ export class Core {
     }
     /**
      * Disables text selection on the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     disableTextSelection(): this {
         this.element.style.userSelect = "none";
@@ -814,7 +802,7 @@ export class Core {
 
     /**
      * Enables text selection on the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     enableTextSelection(): this {
         this.element.style.userSelect = "auto";
@@ -831,7 +819,7 @@ export class Core {
 
     /**
      * Mirrors the content of the element horizontally.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     mirrorContent(): this {
         this.element.style.transform = "scaleX(-1)";
@@ -840,7 +828,7 @@ export class Core {
     /**
      * Lazily loads a background image when the element enters the viewport.
      * @param url - The URL of the background image.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     lazyLoadBackgroundImage(url: string): this {
         const observer = new IntersectionObserver(entries => {
@@ -859,7 +847,7 @@ export class Core {
      * Throttles an action on the element to limit how often it can be triggered.
      * @param action - The action to throttle.
      * @param delay - The minimum time between triggers in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     throttleAction(action: () => void, delay: number): this {
         let lastCall = 0;
@@ -877,7 +865,7 @@ export class Core {
     /**
      * Scrolls the element's content to a specified child element.
      * @param child - The child element to scroll to.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     to(child: HTMLElement): this {
         const parentRect = this.element.getBoundingClientRect();
@@ -898,7 +886,7 @@ export class Core {
      * Shows or hides the element with a sliding animation.
      * @param show - Whether to show (`true`) or hide (`false`) the element.
      * @param duration - Duration of the slide animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     slideToggle(show: boolean, duration: number = 400): this {
         if (show) {
@@ -915,7 +903,7 @@ export class Core {
     }
     /**
      * Adds focus styling when the element is focused by keyboard, but not by mouse.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     keyboardFocusOnly(): this {
         this.on("focus", () => this.addClass("focus-visible"))
@@ -926,7 +914,7 @@ export class Core {
     /**
      * Filters input to allow only specific characters.
      * @param pattern - A regex pattern of allowed characters.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     bindInputFilter(pattern: RegExp): this {
         this.on("input", (event: Event) => {
@@ -941,7 +929,7 @@ export class Core {
      * Adds a zoom animation to the element.
      * @param inOrOut - Specify "in" for zoom-in or "out" for zoom-out.
      * @param duration - Duration of the animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     zoom(inOrOut: "in" | "out", duration: number = 400): this {
         this.element.style.transition = `transform ${duration}ms ease`;
@@ -953,7 +941,7 @@ export class Core {
     /**
      * Highlights the element when hovered and removes highlight on mouse leave.
      * @param color - The highlight color (default: "yellow").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     highlightOnHover(color: string = "yellow"): this {
         const originalColor = this.element.style.backgroundColor;
@@ -964,7 +952,7 @@ export class Core {
 
     /**
      * Shakes the element to visually indicate an error.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     shakeOnError(): this {
         this.element.style.animation = "shake 0.3s";
@@ -977,7 +965,7 @@ export class Core {
      * Cycles through an array of background colors on the element.
      * @param colors - An array of colors to cycle through.
      * @param interval - The interval in milliseconds for each color.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     cycleBackgroundColors(colors: string[], interval: number = 1000): this {
         let index = 0;
@@ -992,7 +980,7 @@ export class Core {
      * Cycles through an array of background colors on the element.
      * @param images - An array of images to cycle through.
      * @param interval - The interval in milliseconds for each color.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     cycleBackground(images: string[], interval: number = 1000): this {
         let index = 0;
@@ -1006,7 +994,7 @@ export class Core {
     /**
      * Toggles the `readonly` attribute for input fields.
      * @param isReadOnly - Whether to set or remove the readonly state.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleReadOnly(isReadOnly: boolean): this {
         (this.element as HTMLInputElement).readOnly = isReadOnly;
@@ -1016,7 +1004,7 @@ export class Core {
     /**
      * Swaps the position of the current element with another element.
      * @param target - The element to swap with.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     swapWith(target: HTMLElement): this {
         const parentA = this.element.parentNode;
@@ -1029,7 +1017,7 @@ export class Core {
     /**
      * Moves the element with arrow keys (up, down, left, right).
      * @param step - The number of pixels to move per key press.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     moveWithArrowKeys(step: number = 10): this {
         window.addEventListener("keydown", (event) => {
@@ -1056,7 +1044,7 @@ export class Core {
     /**
      * Adds a scroll progress indicator to the element.
      * @param progressBar - The HTML element to act as the progress bar.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollProgress(progressBar: HTMLElement): this {
         this.on("scroll", () => {
@@ -1070,7 +1058,7 @@ export class Core {
     /**
      * Limits text content to a specified length and adds an ellipsis if exceeded.
      * @param maxLength - Maximum number of characters to display.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     limitText(maxLength: number): this {
         if (this.element.textContent && this.element.textContent.length > maxLength) {
@@ -1082,7 +1070,7 @@ export class Core {
      * Displays a temporary flash message inside the element.
      * @param message - The message to display.
      * @param duration - Duration in milliseconds before the message fades out.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     flash(message: string, duration: number = 3000): this {
         const flash = document.createElement("div");
@@ -1108,7 +1096,7 @@ export class Core {
      * Adjusts the font size based on the screen width.
      * @param minSize - Minimum font size in pixels.
      * @param maxSize - Maximum font size in pixels.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     adjust(minSize: number = 12, maxSize: number = 24): this {
         const resizeFont = () => {
@@ -1131,7 +1119,7 @@ export class Core {
     /**
      * Restores the saved state to the element's content.
      * @param state - The state to restore (previously saved inner HTML or text).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     restoreState(state: string): this {
         this.element.innerHTML = state;
@@ -1141,7 +1129,7 @@ export class Core {
     /**
      * Scrolls the element's content to the top on button click.
      * @param button - The button element to trigger the scroll.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollToTopOnClick(button: HTMLElement): this {
         button.addEventListener("click", () => {
@@ -1153,7 +1141,7 @@ export class Core {
     /**
      * Toggles inline content editing by setting the `contenteditable` attribute.
      * @param isEditable - Whether to enable or disable editing.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleContentEditable(isEditable: boolean): this {
         this.element.contentEditable = isEditable ? "true" : "false";
@@ -1161,7 +1149,7 @@ export class Core {
     }
     /**
      * Adds a loading spinner overlay to the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     showLoadingSpinner(): this {
         const spinner = document.createElement("div");
@@ -1178,7 +1166,7 @@ export class Core {
 
     /**
      * Removes the loading spinner overlay from the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     hideLoadingSpinner(): this {
         const spinner = this.element.querySelector(".spinner");
@@ -1190,7 +1178,7 @@ export class Core {
      * Animates the background color of the element.
      * @param color - The target color.
      * @param duration - The duration in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     animateBackgroundColor(color: string, duration: number = 1000): this {
         this.element.style.transition = `background-color ${duration}ms ease`;
@@ -1199,7 +1187,7 @@ export class Core {
     }
     /**
      * Toggles the checked state of a checkbox or radio input.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleCheck(): this {
         if (this.element instanceof HTMLInputElement && (this.element.type === "checkbox" || this.element.type === "radio")) {
@@ -1211,7 +1199,7 @@ export class Core {
     /**
      * Monitors height changes and triggers a callback when the element's height changes.
      * @param callback - The function to call when the height changes.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onHeightChange(callback: () => void): this {
         const observer = new ResizeObserver(entries => {
@@ -1227,7 +1215,7 @@ export class Core {
     /**
      * Displays a tooltip on hover with a specified message.
      * @param message - The tooltip message.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     displayTooltip(message: string): this {
         this.on("mouseenter", () => {
@@ -1249,7 +1237,7 @@ export class Core {
 
     /**
      * Adds a pulse animation effect when the element is clicked.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     pulseOnClick(): this {
         this.on("click", () => {
@@ -1264,7 +1252,7 @@ export class Core {
     /**
      * Toggles visibility of the element with a fade effect.
      * @param duration - Duration of the fade animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleFade(duration: number = 400): this {
         const isHidden = window.getComputedStyle(this.element).display === "none";
@@ -1281,7 +1269,7 @@ export class Core {
     /**
      * Adds a double-click event listener to the element.
      * @param handler - The event handler function.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onDoubleClick(handler: EventListener): this {
         this.element.addEventListener("dblclick", handler);
@@ -1291,7 +1279,7 @@ export class Core {
      * Adds a glowing effect to the element.
      * @param color - The glow color.
      * @param intensity - The glow intensity.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     glow(color: string = "blue", intensity: number = 10): this {
         this.element.style.boxShadow = `0 0 ${intensity}px ${color}`;
@@ -1300,7 +1288,7 @@ export class Core {
 
     /**
      * Removes the glow effect from the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     removeGlow(): this {
         this.element.style.boxShadow = "none";
@@ -1320,7 +1308,7 @@ export class Core {
      * Cycles through a list of classes, applying each one sequentially.
      * @param classes - Array of class names to cycle through.
      * @param interval - Time in milliseconds for each class change.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     cycleClasses(classes: string[], interval: number = 1000): this {
         let index = 0;
@@ -1334,7 +1322,7 @@ export class Core {
     /**
      * Makes the element sticky within the viewport on scroll.
      * @param offset - The offset from the top of the viewport in pixels.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     makeSticky(offset: number = 0): this {
         this.on("scroll", () => {
@@ -1346,7 +1334,7 @@ export class Core {
     }
     /**
      * Automatically resizes a textarea based on content.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     autoResizeTextarea(): this {
         this.on("input", () => {
@@ -1359,7 +1347,7 @@ export class Core {
      * Slides the element in from a specified direction.
      * @param direction - The direction ("left", "right", "top", or "bottom").
      * @param duration - The duration of the animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     slideIn(direction: "left" | "right" | "top" | "bottom", duration: number = 500): this {
         this.element.style.transition = `transform ${duration}ms ease`;
@@ -1372,7 +1360,7 @@ export class Core {
      * Slides the element out in a specified direction.
      * @param direction - The direction ("left", "right", "top", or "bottom").
      * @param duration - The duration of the animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     slideOut(direction: "left" | "right" | "top" | "bottom", duration: number = 500): this {
         this.element.style.transition = `transform ${duration}ms ease`;
@@ -1383,7 +1371,7 @@ export class Core {
      * Scrambles the text content with a random character effect.
      * @param iterations - Number of times to scramble each character.
      * @param duration - Duration in milliseconds for the effect.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrambleText(iterations: number = 5, duration: number = 50): this {
         const originalText = this.element.textContent || "";
@@ -1404,7 +1392,7 @@ export class Core {
     /**
      * Adds a bounce animation to the element.
      * @param duration - Duration of the bounce animation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     bounce(duration: number = 500): this {
         this.element.style.animation = `bounce ${duration}ms ease-in-out`;
@@ -1415,7 +1403,7 @@ export class Core {
      * Replaces the content of the element with a smooth transition.
      * @param newContent - The HTML content to switch to.
      * @param duration - Duration of the transition in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     switchContent(newContent: string, duration: number = 500): this {
         this.element.style.transition = `opacity ${duration / 2}ms`;
@@ -1429,7 +1417,7 @@ export class Core {
 
     /**
      * Hides the element when clicking outside of it.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     closeOnOutsideClick(): this {
         const outsideClickListener = (event: MouseEvent) => {
@@ -1445,7 +1433,7 @@ export class Core {
     /**
      * Automatically hides the element after a specified delay.
      * @param delay - The time in milliseconds before hiding.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     autoDismiss(delay: number = 3000): this {
         setTimeout(() => {
@@ -1459,7 +1447,7 @@ export class Core {
      * @param color - The target color.
      * @param duration - Duration of the transition in milliseconds.
      * @param isBackground - Whether to change background (true) or text color (false).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     colorTransition(color: string, duration: number = 500, isBackground: boolean = true): this {
         const property = isBackground ? "backgroundColor" : "color";
@@ -1468,27 +1456,13 @@ export class Core {
         return this;
     }
 
-    /**
-     * Detects a click-and-hold interaction on the element.
-     * @param duration - Duration in milliseconds for the hold action.
-     * @param action - The action to execute after the hold duration.
-     * @returns The `Core` instance for chaining.
-     */
-    onClickAndHold(duration: number, action: () => void): this {
-        let holdTimeout: NodeJS.Timeout | null = null;
-        this.on("mousedown", () => {
-            holdTimeout = setTimeout(action, duration);
-        }).on("mouseup mouseleave", () => {
-            if (holdTimeout) clearTimeout(holdTimeout);
-        });
-        return this;
-    }
+
 
     /**
      * Blinks the element for a specified number of times.
      * @param times - Number of blinks.
      * @param interval - Duration of each blink in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     blink(times: number = 3, interval: number = 200): this {
         let count = 0;
@@ -1506,7 +1480,7 @@ export class Core {
      * Cycles through a list of states, applying each one sequentially.
      * @param states - An array of state objects with style and content properties.
      * @param interval - Duration for each state in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     cycleStates(states: { style?: { [key: string]: string }, content?: string }[], interval: number): this {
         let index = 0;
@@ -1526,7 +1500,7 @@ export class Core {
     /**
      * Snaps the element to a specified grid size.
      * @param gridSize - The size of the grid cells in pixels.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     snapToGrid(gridSize: number): this {
         const rect = this.element.getBoundingClientRect();
@@ -1539,26 +1513,10 @@ export class Core {
     }
 
     /**
-     * Detects a sustained hover over the element.
-     * @param duration - Time in milliseconds to trigger the intent.
-     * @param action - The action to execute after sustained hover.
-     * @returns The `Core` instance for chaining.
-     */
-    onHoverIntent(duration: number, action: () => void): this {
-        let hoverTimeout: NodeJS.Timeout | null = null;
-        this.on("mouseenter", () => {
-            hoverTimeout = setTimeout(action, duration);
-        }).on("mouseleave", () => {
-            if (hoverTimeout) clearTimeout(hoverTimeout);
-        });
-        return this;
-    }
-
-    /**
      * Adds a shake animation to the element with adjustable intensity.
      * @param intensity - Intensity of the shake in pixels.
      * @param duration - Duration of each shake cycle in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     shakeWithIntensity(intensity: number = 5, duration: number = 100): this {
         const originalPosition = this.element.style.position;
@@ -1577,7 +1535,7 @@ export class Core {
     }
     /**
      * Triggers focus styles on the element only when accessed via keyboard.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     focusOnlyOnKeyboard(): this {
         this.on("focus", () => {
@@ -1591,7 +1549,7 @@ export class Core {
     /**
      * Tracks scroll percentage and updates an indicator element.
      * @param indicator - The element that visually represents the scroll progress.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollPercentage(indicator: HTMLElement): this {
         this.on("scroll", () => {
@@ -1607,7 +1565,7 @@ export class Core {
      * Generates and triggers a download link for text content or data.
      * @param data - The data to download as a string or Blob.
      * @param filename - The name of the file to be downloaded.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     downloadAsFile(data: string | Blob, filename: string): this {
         const link = document.createElement("a");
@@ -1623,7 +1581,7 @@ export class Core {
     /**
      * Adds a horizontal scrolling marquee effect to the text content.
      * @param speed - Speed of the scroll in pixels per second.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     marquee(speed: number = 50): this {
         const textContent = this.element.textContent || "";
@@ -1643,21 +1601,9 @@ export class Core {
     }
 
     /**
-     * Analyzes and displays the frequency of words in the element's text content.
-     * @returns An object representing word frequency counts.
-     */
-    wordFrequency(): { [word: string]: number } {
-        const text = this.element.textContent?.toLowerCase() || "";
-        const words = text.match(/\b\w+\b/g) || [];
-        return words.reduce((acc, word) => {
-            acc[word] = (acc[word] || 0) + 1;
-            return acc;
-        }, {} as { [word: string]: number });
-    }
-    /**
      * Saves the element's inner HTML to local storage.
      * @param key - The local storage key to save the content under.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     saveToLocalStorage(key: string): this {
         localStorage.setItem(key, this.element.innerHTML);
@@ -1667,7 +1613,7 @@ export class Core {
     /**
      * Restores the element's inner HTML from local storage.
      * @param key - The local storage key to retrieve the content from.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     restoreFromLocalStorage(key: string): this {
         const savedContent = localStorage.getItem(key);
@@ -1680,7 +1626,7 @@ export class Core {
      * Detects when the element enters the viewport within a custom threshold.
      * @param callback - Function to trigger when the element is in view.
      * @param threshold - Threshold (0 to 1) of the element’s visibility to trigger the callback.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     onInView(callback: () => void, threshold: number = 0.5): this {
         const observer = new IntersectionObserver(
@@ -1700,7 +1646,7 @@ export class Core {
      * Limits character input and shows a counter.
      * @param maxChars - Maximum number of characters.
      * @param counterElement - Element to display the character count.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     limitInputWithCounter(maxChars: number, counterElement: HTMLElement): this {
         this.on("input", (event: Event) => {
@@ -1716,7 +1662,7 @@ export class Core {
     /**
      * Creates and shows a modal dialog with specified content.
      * @param content - The HTML content for the modal.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     showModal(content: string): this {
         const modal = document.createElement("div");
@@ -1744,7 +1690,7 @@ export class Core {
      * Adds a typewriter effect to the element's text.
      * @param text - The text to display.
      * @param speed - Speed of typing in milliseconds per character.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     typewriterEffect(text: string, speed: number = 100): this {
         let index = 0;
@@ -1761,7 +1707,7 @@ export class Core {
      * Flashes the background color for emphasis.
      * @param color - Color to flash.
      * @param duration - Duration of the flash in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     flashBackground(color: string = "yellow", duration: number = 200): this {
         const originalColor = this.element.style.backgroundColor;
@@ -1776,7 +1722,7 @@ export class Core {
     /**
      * Exports the element's content as a JSON file.
      * @param filename - The name of the JSON file to download.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     downloadAsJSON(filename: string = "data.json"): this {
         const data = JSON.stringify(this.element.innerHTML);
@@ -1794,7 +1740,7 @@ export class Core {
     /**
      * Detects when the user scrolls to the bottom of the element and triggers a callback to load more content.
      * @param callback - Function to execute when reaching the bottom.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     infiniteScroll(callback: () => void): this {
         this.on("scroll", () => {
@@ -1808,22 +1754,22 @@ export class Core {
 
     /**
      * Creates a deep clone of the element with all styles and attributes.
-     * @returns A new `Core` instance of the cloned element.
+     * @returns A new `Otechdo` instance of the cloned element.
      */
-    deepClone(): Core {
+    deepClone(): Otechdo {
         const clone = this.element.cloneNode(true) as HTMLElement;
-        const newCore = new Core(clone);
+        const newOtechdo = new Otechdo(clone);
         Array.from(this.element.attributes).forEach(attr => {
-            newCore.element.setAttribute(attr.name, attr.value);
+            newOtechdo.element.setAttribute(attr.name, attr.value);
         });
-        newCore.element.style.cssText = this.element.style.cssText;
-        return newCore;
+        newOtechdo.element.style.cssText = this.element.style.cssText;
+        return newOtechdo;
     }
     /**
      * Animates the element along a specified path.
      * @param path - An array of coordinates to follow, e.g., [{ x: 0, y: 0 }, { x: 100, y: 100 }]
      * @param duration - Duration in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     animatePath(path: { x: number; y: number }[], duration: number = 1000): this {
         const stepDuration = duration / path.length;
@@ -1844,7 +1790,7 @@ export class Core {
      * Plays a sound file when a specified event is triggered.
      * @param event - The event to trigger the sound (e.g., "click").
      * @param audioUrl - URL of the audio file.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     playSoundOnEvent(event: string, audioUrl: string): this {
         const audio = new Audio(audioUrl);
@@ -1855,7 +1801,7 @@ export class Core {
     /**
      * Plays a music file
      * @param audioUrl - URL of the audio file.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     play(audioUrl: string): this {
         const audio = new Audio(audioUrl);
@@ -1870,7 +1816,7 @@ export class Core {
     /**
      * Rotates the element 360 degrees on click.
      * @param duration - Duration of the rotation in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     rotateOnClick(duration: number = 1000): this {
         this.on("click", () => {
@@ -1884,7 +1830,7 @@ export class Core {
     /**
      * Animates the element when it scrolls into the viewport.
      * @param animationClass - The CSS class to add for the animation.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     animateOnScroll(animationClass: string): this {
         const observer = new IntersectionObserver(entries => {
@@ -1902,7 +1848,7 @@ export class Core {
      * Adjusts font size to fit within the container.
      * @param minSize - Minimum font size in pixels.
      * @param maxSize - Maximum font size in pixels.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     fitTextToContainer(minSize: number = 12, maxSize: number = 100): this {
         let fontSize = maxSize;
@@ -1916,7 +1862,7 @@ export class Core {
 
     /**
      * Makes the element sticky at the top of the viewport.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     stickyHeader(): this {
         const initialPosition = this.element.offsetTop;
@@ -1935,7 +1881,7 @@ export class Core {
      * Morphs the element into another shape or size.
      * @param targetStyles - The target CSS styles.
      * @param duration - Duration of the morphing effect.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     morph(targetStyles: { [key: string]: string }, duration: number = 1000): this {
         Object.assign(this.element.style, targetStyles, { transition: `all ${duration}ms ease` });
@@ -1943,7 +1889,7 @@ export class Core {
     }
     /**
      * Displays a real-time clock inside the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     showRealTimeClock(): this {
         const updateTime = () => {
@@ -1958,7 +1904,7 @@ export class Core {
      * Automatically refreshes the element's content at specified intervals.
      * @param callback - Function to refresh the content.
      * @param interval - Refresh interval in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     autoRefreshContent(callback: () => void, interval: number = 5000): this {
         setInterval(() => {
@@ -1969,7 +1915,7 @@ export class Core {
     /**
      * Locks or unlocks scrolling within the element.
      * @param lock - Whether to lock (`true`) or unlock (`false`) scrolling.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollLock(lock: boolean = true): this {
         if (lock) {
@@ -1982,7 +1928,7 @@ export class Core {
 
     /**
      * Transforms the element's text to uppercase when hovered.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     uppercaseOnHover(): this {
         this.on("mouseenter", () => {
@@ -1997,7 +1943,7 @@ export class Core {
      * Flips the element with an animation.
      * @param direction - Direction of flip ("horizontal" or "vertical").
      * @param duration - Duration of the flip animation.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     flip(direction: "horizontal" | "vertical" = "horizontal", duration: number = 500): this {
         const axis = direction === "horizontal" ? "Y" : "X";
@@ -2009,7 +1955,7 @@ export class Core {
     /**
      * Synchronizes the scroll position with another element.
      * @param target - The element to sync scroll with.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     synchro(target: HTMLElement): this {
         this.on("scroll", () => {
@@ -2022,7 +1968,7 @@ export class Core {
      * Lazily loads an image with a placeholder.
      * @param placeholder - The placeholder image URL.
      * @param imageUrl - The actual image URL to load.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     lazyLoadImageWithPlaceholder(placeholder: string, imageUrl: string): this {
         const img = this.element as HTMLImageElement;
@@ -2043,7 +1989,7 @@ export class Core {
      * @param seconds - Countdown duration in seconds.
      * @param progressBar - Element to display progress.
      * @param onComplete - Callback when the countdown ends.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     countdownWithProgress(seconds: number, progressBar: HTMLElement, onComplete: () => void): this {
         let remainingTime = seconds;
@@ -2064,7 +2010,7 @@ export class Core {
     /**
      * Sets multiple ARIA attributes on the element.
      * @param attributes - An object of ARIA attributes and their values.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setAriaAttributes(attributes: { [key: string]: string }): this {
         Object.entries(attributes).forEach(([key, value]) => {
@@ -2072,31 +2018,14 @@ export class Core {
         });
         return this;
     }
-    /**
-     * Detects if the user is idle for a specified time.
-     * @param timeout - Time in milliseconds to consider as idle.
-     * @param onIdle - Callback function to execute when idle.
-     * @returns The `Core` instance for chaining.
-     */
-    detectIdle(timeout: number, onIdle: () => void): this {
-        let idleTimeout: NodeJS.Timeout | null = null;
-        const resetTimer = () => {
-            if (idleTimeout) clearTimeout(idleTimeout);
-            idleTimeout = setTimeout(onIdle, timeout);
-        };
-        ["mousemove", "keydown", "scroll", "click"].forEach(event =>
-            window.addEventListener(event, resetTimer)
-        );
-        resetTimer();
-        return this;
-    }
+
 
     /**
      * Adds a pulsing shadow effect to the element.
      * @param color - Shadow color.
      * @param size - Shadow size in pixels.
      * @param duration - Duration of the pulse animation.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     shadowPulse(color: string = "rgba(0, 0, 0, 0.5)", size: number = 15, duration: number = 1000): this {
         this.element.style.boxShadow = `0 0 ${size}px ${color}`;
@@ -2108,7 +2037,7 @@ export class Core {
      * Displays a notification that auto-dismisses after a specified duration.
      * @param message - The notification message.
      * @param duration - Duration in milliseconds before it disappears.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     notify(message: string, duration: number = 3000): this {
         const notification = document.createElement("div");
@@ -2131,7 +2060,7 @@ export class Core {
      * @param expandedHeight - The expanded height.
      * @param collapsedHeight - The collapsed height.
      * @param duration - Duration of the transition in milliseconds.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleExpandCollapse(expandedHeight: string, collapsedHeight: string, duration: number = 300): this {
         const isExpanded = this.element.style.height === expandedHeight;
@@ -2143,7 +2072,7 @@ export class Core {
     /**
      * Positions the element as a floating button in the bottom corner.
      * @param position - "left" or "right" bottom corner position.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     makeFloatingButton(position: "left" | "right" = "right"): this {
         this.element.style.position = "fixed";
@@ -2157,7 +2086,7 @@ export class Core {
     /**
      * Masks the input field with a specified format.
      * @param mask - A mask format string (e.g., "(###) ###-####").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     applyInputMask(mask: string): this {
         this.on("input", (event: Event) => {
@@ -2182,7 +2111,7 @@ export class Core {
      * Toggles collapsing and expanding the content on double-click.
      * @param collapsedHeight - Height when collapsed.
      * @param expandedHeight - Height when expanded.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleCollapseOnDoubleClick(collapsedHeight: string = "0", expandedHeight: string = "auto"): this {
         let isCollapsed = true;
@@ -2196,7 +2125,7 @@ export class Core {
     /**
      * Adds a reveal animation when the element scrolls into view.
      * @param animation - The CSS animation name to apply.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     revealOnScroll(animation: string): this {
         const observer = new IntersectionObserver(entries => {
@@ -2214,7 +2143,7 @@ export class Core {
      * Shows a quick tooltip on hover.
      * @param text - Tooltip text to display.
      * @param position - "top", "bottom", "left", or "right" of the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     quickTooltip(text: string, position: "top" | "bottom" | "left" | "right" = "top"): this {
         const tooltip = document.createElement("div");
@@ -2256,7 +2185,7 @@ export class Core {
     /**
      * Applies a CSS filter to the element.
      * @param filter - The CSS filter to apply (e.g., "blur(5px)").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     applyFilter(filter: string): this {
         this.element.style.filter = filter;
@@ -2265,7 +2194,7 @@ export class Core {
 
     /**
      * Removes any applied CSS filter from the element.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     removeFilter(): this {
         this.element.style.filter = "none";
@@ -2275,7 +2204,7 @@ export class Core {
     /**
      * Toggles between dark and light mode for the element.
      * @param isDark - Boolean to specify dark mode (`true`) or light mode (`false`).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     toggleDarkMode(isDark: boolean): this {
         this.element.style.backgroundColor = isDark ? "#333" : "#fff";
@@ -2288,7 +2217,7 @@ export class Core {
      * @param yAngle - Rotation angle along the Y-axis.
      * @param zAngle - Rotation angle along the Z-axis.
      * @param duration - Duration of the animation.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     rotate3D(xAngle: number, yAngle: number, zAngle: number, duration: number = 500): this {
         this.element.style.transition = `transform ${duration}ms`;
@@ -2300,7 +2229,7 @@ export class Core {
      * Applies a CSS grid layout with specified columns and rows.
      * @param columns - CSS grid-template-columns value.
      * @param rows - CSS grid-template-rows value.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     grid(columns: string, rows: string): this {
         this.element.style.display = "grid";
@@ -2313,7 +2242,7 @@ export class Core {
      * @param direction - Flex direction (`row`, `column`, etc.).
      * @param justifyContent - Alignment along the main axis (e.g., `center`, `space-between`).
      * @param alignItems - Alignment along the cross axis (e.g., `center`, `stretch`).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     flex(direction: "row" | "column" = "row", justifyContent: string = "flex-start", alignItems: string = "stretch"): this {
         this.element.style.display = "flex";
@@ -2325,7 +2254,7 @@ export class Core {
     /**
      * Enables flex wrapping for the element.
      * @param wrap - Specifies whether items should wrap (`wrap`, `nowrap`, `wrap-reverse`).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     enableFlexWrap(wrap: "wrap" | "nowrap" | "wrap-reverse" = "wrap"): this {
         this.element.style.flexWrap = wrap;
@@ -2336,7 +2265,7 @@ export class Core {
      * Sets the alignment of a specific flex item.
      * @param index - Index of the child element to align.
      * @param alignSelf - Alignment for the specific item (`auto`, `flex-start`, `center`, etc.).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     alignFlexItem(index: number, alignSelf: "auto" | "flex-start" | "center" | "flex-end" | "baseline" | "stretch"): this {
         const child = this.element.children[index] as HTMLElement;
@@ -2349,7 +2278,7 @@ export class Core {
      * Sets the flex-basis for a specific item within the flex container.
      * @param index - Index of the child element to set flex-basis for.
      * @param basis - Flex-basis size (e.g., `100px`, `50%`).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setFlexItemBasis(index: number, basis: string): this {
         const child = this.element.children[index] as HTMLElement;
@@ -2362,7 +2291,7 @@ export class Core {
      * Applies responsive flexbox layout settings based on the screen width.
      * @param mobileDirection - Flex direction on small screens (`row`, `column`).
      * @param desktopDirection - Flex direction on larger screens.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     applyResponsiveFlex(mobileDirection: "row" | "column", desktopDirection: "row" | "column"): this {
         const updateFlex = () => {
@@ -2379,7 +2308,7 @@ export class Core {
      * @param grow - Flex-grow value.
      * @param shrink - Flex-shrink value.
      * @param basis - Flex-basis value (e.g., `auto`, `100px`, `50%`).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setFlexItemProperties(index: number, grow: number = 1, shrink: number = 1, basis: string = "auto"): this {
         const child = this.element.children[index] as HTMLElement;
@@ -2393,7 +2322,7 @@ export class Core {
      * Sets the order of a specific flex item.
      * @param index - Index of the child element.
      * @param order - The order value for this item.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setFlexItemOrder(index: number, order: number): this {
         const child = this.element.children[index] as HTMLElement;
@@ -2404,7 +2333,7 @@ export class Core {
     }
     /**
      * Centers content within the element both horizontally and vertically using flexbox.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     centerContentWithFlex(): this {
         this.element.style.display = "flex";
@@ -2415,7 +2344,7 @@ export class Core {
 
     /**
      * Distributes space evenly between items in the flex container.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     distributeEvenly(): this {
         this.element.style.display = "flex";
@@ -2426,7 +2355,7 @@ export class Core {
      * Applies a responsive CSS grid layout to the element.
      * @param mobileCols - Number of columns on mobile.
      * @param desktopCols - Number of columns on larger screens.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     applyResponsiveGrid(mobileCols: number = 1, desktopCols: number = 3): this {
         const updateGrid = () => {
@@ -2442,7 +2371,7 @@ export class Core {
     /**
      * Sets the grid columns to be of equal width.
      * @param columns - Number of columns.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     equalWidthGridColumns(columns: number): this {
         this.element.style.display = "grid";
@@ -2452,7 +2381,7 @@ export class Core {
     /**
      * Sets up a responsive grid that auto-fits columns based on available space.
      * @param minColumnWidth - Minimum width of each column.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     autoFitGrid(minColumnWidth: string = "150px"): this {
         this.element.style.display = "grid";
@@ -2462,7 +2391,7 @@ export class Core {
     /**
      * Sets the gap between grid items.
      * @param gap - The gap size (e.g., `10px`, `1rem`).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setGridGap(gap: string): this {
         this.element.style.gap = gap;
@@ -2471,7 +2400,7 @@ export class Core {
     /**
      * Sets a named grid area for positioning grid items.
      * @param area - The grid area name.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     setGridArea(area: string): this {
         this.element.style.gridArea = area;
@@ -2481,7 +2410,7 @@ export class Core {
     /**
      * Defines grid template areas within the grid container.
      * @param areas - Array of strings defining grid template areas.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     defineGridTemplateAreas(areas: string[]): this {
         this.element.style.display = "grid";
@@ -2493,7 +2422,7 @@ export class Core {
      * Sets up a masonry-style grid layout using CSS grid.
      * @param columns - Number of columns in the grid.
      * @param gap - Gap between grid items.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     applyMasonryGrid(columns: number = 3, gap: string = "10px"): this {
         this.element.style.display = "grid";
@@ -2505,7 +2434,7 @@ export class Core {
 
     /**
      * Displays a tooltip showing the element's width and height on hover.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     showSizeOnHover(): this {
         const tooltip = document.createElement("span");
@@ -3240,7 +3169,7 @@ export class Core {
     /**
      * Appends a child element to the current element.
      * @param child - The HTML element to append.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     append(child: HTMLElement): this {
         this.element.append(child);
@@ -3728,7 +3657,7 @@ export class Core {
     /**
      * Prepends one or more children (elements or text) to the current element.
      * @param children - The elements or text to prepend.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     prepend(...children: (string | HTMLElement)[]): this {
         this.element.prepend(...children);
@@ -3741,7 +3670,7 @@ export class Core {
 
     /**
      * Removes the element from the DOM.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     remove(): this {
         this.element.remove();
@@ -3750,7 +3679,7 @@ export class Core {
 
     /**
      * Hides the element by setting `display: none`.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     hide(): this {
         this.element.style.display = 'none';
@@ -3760,7 +3689,7 @@ export class Core {
     /**
      * Shows the element by setting `display` to a specified value.
      * @param displayType - The display type (default is "block").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     show(displayType: string = "block"): this {
         this.element.style.display = displayType;
@@ -3775,7 +3704,7 @@ export class Core {
      * Sets the height of the element with a specified unit.
      * @param value - The height value.
      * @param unit - The unit of height (default is "px").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     height(value: string, unit: string = "px"): this {
         this.element.style.height = value.concat(unit);
@@ -3788,7 +3717,7 @@ export class Core {
      * @param y - The top position value.
      * @param x - The left position value.
      * @param unit - The unit for the coordinates (default is "px").
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     position(pos: string, y: string, x: string, unit: string = "px"): this {
         this.element.style.position = pos;
@@ -3804,7 +3733,7 @@ export class Core {
     /**
      * Sets the vertical scroll position of the element.
      * @param value - The scroll value.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollTop(value: number): this {
         this.element.scrollTop = value;
@@ -3814,7 +3743,7 @@ export class Core {
     /**
      * Sets the horizontal scroll position of the element.
      * @param value - The scroll value.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     scrollLeft(value: number): this {
         this.element.scrollLeft = value;
@@ -3824,7 +3753,7 @@ export class Core {
     /**
      * Fades in the element with an animation duration.
      * @param duration - The animation duration (in ms).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     fadeIn(duration: string = "400"): this {
         this.element.style.opacity = "0";
@@ -3837,7 +3766,7 @@ export class Core {
     /**
      * Fades out the element with an animation duration.
      * @param duration - The animation duration (in ms).
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     fadeOut(duration: string = "400"): this {
         this.element.style.opacity = "1";
@@ -3852,27 +3781,27 @@ export class Core {
 
     /**
      * Gets the parent of the current element.
-     * @returns A new `Core` instance for the parent element.
+     * @returns A new `Otechdo` instance for the parent element.
      */
-    parent(): Core {
-        return new Core(this.element.parentElement ?? this.element);
+    parent(): Otechdo {
+        return new Otechdo(this.element.parentElement ?? this.element);
     }
 
     /**
      * Gets the first child of the current element.
-     * @returns A new `Core` instance for the child element.
+     * @returns A new `Otechdo` instance for the child element.
      */
-    child(): Core {
-        return new Core(this.element.children.item(0) as HTMLElement ?? this.element);
+    child(): Otechdo {
+        return new Otechdo(this.element.children.item(0) as HTMLElement ?? this.element);
     }
 
     /**
      * Finds a descendant element that matches a selector within the current element.
      * @param selector - The CSS selector to match.
-     * @returns A new `Core` instance for the matched element.
+     * @returns A new `Otechdo` instance for the matched element.
      */
-    find(selector: string): Core {
-        return new Core(this.element.querySelector(selector) as HTMLElement ?? this.element);
+    find(selector: string): Otechdo {
+        return new Otechdo(this.element.querySelector(selector) as HTMLElement ?? this.element);
     }
 
     // ================================
@@ -3882,7 +3811,7 @@ export class Core {
     /**
      * Appends text to the current element.
      * @param text - The text to append.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     appendText(text: string): this {
         this.element.appendChild(document.createTextNode(text));
@@ -3891,17 +3820,17 @@ export class Core {
 
     /**
      * Clones the current element.
-     * @returns A new `Core` instance for the cloned element.
+     * @returns A new `Otechdo` instance for the cloned element.
      */
-    clone(): Core {
-        return new Core(this.element.cloneNode(true) as HTMLElement);
+    clone(): Otechdo {
+        return new Otechdo(this.element.cloneNode(true) as HTMLElement);
     }
 
     /**
      * Triggers a custom event on the current element.
      * @param eventType - The event type to trigger.
      * @param data - Additional data for the event.
-     * @returns The `Core` instance for chaining.
+     * @returns The `Otechdo` instance for chaining.
      */
     trigger(eventType: string, data: any): this {
         const event = new CustomEvent(eventType, { detail: data });
