@@ -1,6 +1,7 @@
 // src/web/core.test.ts
 import { Core } from '../core/Core';
 import { expect } from "@jest/globals";
+
 describe('Core Class', () => {
     // Set up and tear down a DOM structure for testing
     beforeEach(() => {
