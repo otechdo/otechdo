@@ -1,303 +1,343 @@
-// src/core/Core.ts
+/**
+ * The `Core` class provides a fluent API for manipulating a single HTML element.
+ * It allows adding styles, managing classes, manipulating DOM content, and attaching events.
+ */
 export class Core {
-    elements: HTMLElement[];
+    private element: HTMLElement;
 
-    constructor(selector: string | HTMLElement | HTMLElement[]) {
-        if (typeof selector === "string") {
-            this.elements = Array.from(document.querySelectorAll(selector));
-        } else if (selector instanceof HTMLElement) {
-            this.elements = [selector];
-        } else if (Array.isArray(selector)) {
-            this.elements = selector;
-        } else {
-            this.elements = [];
-        }
+    /**
+     * Initializes the `Core` class with a specified HTML element.
+     * @param element - The HTML element to be manipulated.
+     */
+    constructor(element: HTMLElement) {
+        this.element = element;
     }
 
-    // Add one or more classes to the selected elements
+    // ================================
+    // CSS Class Manipulation
+    // ================================
+
+    /**
+     * Adds one or more CSS classes to the element.
+     * @param classNames - The names of the classes to add.
+     * @returns The `Core` instance for chaining.
+     */
     addClass(...classNames: string[]): this {
-        this.elements.forEach(el => el.classList.add(...classNames));
+        this.element.classList.add(...classNames);
         return this;
     }
 
-    // Remove one or more classes from the selected elements
+    /**
+     * Removes one or more CSS classes from the element.
+     * @param classNames - The names of the classes to remove.
+     * @returns The `Core` instance for chaining.
+     */
     removeClass(...classNames: string[]): this {
-        this.elements.forEach(el => el.classList.remove(...classNames));
+        this.element.classList.remove(...classNames);
         return this;
     }
 
-    // Toggle a class on the selected elements
+    /**
+     * Toggles (adds or removes) a CSS class on the element.
+     * @param className - The name of the class to toggle.
+     * @returns The `Core` instance for chaining.
+     */
     toggleClass(className: string): this {
-        this.elements.forEach(el => el.classList.toggle(className));
+        this.element.classList.toggle(className);
         return this;
     }
 
-    // Set CSS styles on the selected elements
+    // ================================
+    // CSS Styling
+    // ================================
+
+    /**
+     * Applies CSS styles to the element.
+     * @param styles - An object containing key-value pairs for styles to apply.
+     * @returns The `Core` instance for chaining.
+     */
     css(styles: { [key: string]: string | number }): this {
-        this.elements.forEach(el => {
-            for (const [property, value] of Object.entries(styles)) {
-                (el.style as any)[property] = value;
-            }
+        Object.entries(styles).forEach(([key, value]) => {
+            (this.element.style as any)[key] = typeof value === "number" ? `${value}px` : value;
         });
         return this;
     }
 
-    // Set or get attributes on the selected elements
-    attr(attribute: string, value?: string): this | string | null {
-        if (value === undefined) {
-            return this.elements.length ? this.elements[0].getAttribute(attribute) : null;
-        }
-        this.elements.forEach(el => el.setAttribute(attribute, value));
+    // ================================
+    // HTML Attributes
+    // ================================
+
+    /**
+     * Sets or retrieves an attribute of the element.
+     * @param attribute - The name of the attribute.
+     * @param value - The value of the attribute (optional).
+     * @returns The `Core` instance for chaining if setting, or the attribute value if getting.
+     */
+    attr(attribute: string, value?: string): this {
+        this.element.setAttribute(attribute, value ?? "");
         return this;
     }
 
-    // Remove an attribute from the selected elements
+    /**
+     * Removes a specified attribute from the element.
+     * @param attribute - The name of the attribute to remove.
+     * @returns The `Core` instance for chaining.
+     */
     removeAttr(attribute: string): this {
-        this.elements.forEach(el => el.removeAttribute(attribute));
+        this.element.removeAttribute(attribute);
         return this;
     }
 
-    // Add event listeners to the selected elements
+    // ================================
+    // Event Handling
+    // ================================
+
+    /**
+     * Adds an event listener to the element.
+     * @param event - The event type (e.g., 'click', 'mouseover').
+     * @param handler - The event handler function.
+     * @returns The `Core` instance for chaining.
+     */
     on(event: string, handler: EventListener): this {
-        this.elements.forEach(el => el.addEventListener(event, handler));
+        this.element.addEventListener(event, handler);
         return this;
     }
 
-    // Remove event listeners from the selected elements
+    /**
+     * Removes an event listener from the element.
+     * @param event - The event type.
+     * @param handler - The event handler function.
+     * @returns The `Core` instance for chaining.
+     */
     off(event: string, handler: EventListener): this {
-        this.elements.forEach(el => el.removeEventListener(event, handler));
+        this.element.removeEventListener(event, handler);
         return this;
     }
 
-    // Set or get the inner HTML of the selected elements
-    html(content?: string): this | string {
-        if (content === undefined) {
-            return this.elements.length ? this.elements[0].innerHTML : '';
-        }
-        this.elements.forEach(el => (el.innerHTML = content));
+    // ================================
+    // HTML Content Manipulation
+    // ================================
+
+    /**
+     * Returns the underlying HTML element.
+     * @returns The HTML element.
+     */
+    html(): HTMLElement {
+        return this.element;
+    }
+
+    /**
+     * Gets or sets the text content of the element.
+     * @returns The text content if getting, or the `Core` instance if setting.
+     */
+    text(): string {
+        return this.element.textContent || "";
+    }
+
+    /**
+     * Appends a child element to the current element.
+     * @param child - The HTML element to append.
+     * @returns The `Core` instance for chaining.
+     */
+    append(child: HTMLElement): this {
+        this.element.append(child);
         return this;
     }
 
-    // Set or get the text content of the selected elements
-    text(content?: string): this | string {
-        if (content === undefined) {
-            return this.elements.length ? this.elements[0].textContent || '' : '';
-        }
-        this.elements.forEach(el => (el.textContent = content));
-        return this;
-    }
-
-    // Append HTML or elements to the selected elements
-    append(...children: (string | HTMLElement)[]): this {
-        this.elements.forEach(el => {
-            children.forEach(child => {
-                if (typeof child === "string") {
-                    el.insertAdjacentHTML('beforeend', child);
-                } else {
-                    el.appendChild(child);
-                }
-            });
-        });
-        return this;
-    }
-
-    // Prepend HTML or elements to the selected elements
+    /**
+     * Prepends one or more children (elements or text) to the current element.
+     * @param children - The elements or text to prepend.
+     * @returns The `Core` instance for chaining.
+     */
     prepend(...children: (string | HTMLElement)[]): this {
-        this.elements.forEach(el => {
-            children.forEach(child => {
-                if (typeof child === "string") {
-                    el.insertAdjacentHTML('afterbegin', child);
-                } else {
-                    el.insertBefore(child, el.firstChild);
-                }
-            });
-        });
+        this.element.prepend(...children);
         return this;
     }
 
-    // Remove the selected elements from the DOM
+    // ================================
+    // Visibility Management
+    // ================================
+
+    /**
+     * Removes the element from the DOM.
+     * @returns The `Core` instance for chaining.
+     */
     remove(): this {
-        this.elements.forEach(el => {
-            el.remove();
-        });
+        this.element.remove();
         return this;
     }
 
-    // Hide the selected elements
+    /**
+     * Hides the element by setting `display: none`.
+     * @returns The `Core` instance for chaining.
+     */
     hide(): this {
-        this.css({ display: "none" });
+        this.element.style.display = 'none';
         return this;
     }
 
-    // Show the selected elements
+    /**
+     * Shows the element by setting `display` to a specified value.
+     * @param displayType - The display type (default is "block").
+     * @returns The `Core` instance for chaining.
+     */
     show(displayType: string = "block"): this {
-        this.css({ display: displayType });
+        this.element.style.display = displayType;
         return this;
     }
 
-    // Get or set the height of the selected elements
-    height(value?: number): this | number | null {
-        if (value === undefined) {
-            return this.elements.length ? this.elements[0].offsetHeight : null;
-        }
-        this.elements.forEach(el => (el.style.height = `${value}px`));
+    // ================================
+    // Positioning and Size
+    // ================================
+
+    /**
+     * Sets the height of the element with a specified unit.
+     * @param value - The height value.
+     * @param unit - The unit of height (default is "px").
+     * @returns The `Core` instance for chaining.
+     */
+    height(value: string, unit: string = "px"): this {
+        this.element.style.height = value.concat(unit);
         return this;
     }
 
-    // Get or set the position of the selected elements
-    position(): { top: number; left: number } | null {
-        if (!this.elements.length) return null;
-        const el = this.elements[0];
-        return { top: el.offsetTop, left: el.offsetLeft };
-    }
-
-    // Get or set the scroll position of the selected elements
-    scrollTop(value?: number): this | number {
-        if (value === undefined) {
-            return this.elements.length ? this.elements[0].scrollTop : 0;
-        }
-        this.elements.forEach(el => (el.scrollTop = value));
+    /**
+     * Sets the position and coordinates of the element.
+     * @param pos - The CSS position type (e.g., "absolute").
+     * @param y - The top position value.
+     * @param x - The left position value.
+     * @param unit - The unit for the coordinates (default is "px").
+     * @returns The `Core` instance for chaining.
+     */
+    position(pos: string, y: string, x: string, unit: string = "px"): this {
+        this.element.style.position = pos;
+        this.element.style.top = y.concat(unit);
+        this.element.style.left = x.concat(unit);
         return this;
     }
 
-    scrollLeft(value?: number): this | number {
-        if (value === undefined) {
-            return this.elements.length ? this.elements[0].scrollLeft : 0;
-        }
-        this.elements.forEach(el => (el.scrollLeft = value));
+    // ================================
+    // Scrolling and Animation
+    // ================================
+
+    /**
+     * Sets the vertical scroll position of the element.
+     * @param value - The scroll value.
+     * @returns The `Core` instance for chaining.
+     */
+    scrollTop(value: number): this {
+        this.element.scrollTop = value;
         return this;
     }
 
-    // Fade in the selected elements (for simple animations)
-    fadeIn(duration: number = 400): this {
-        this.elements.forEach(el => {
-            el.style.opacity = "0";
-            el.style.display = "block";
-            let last = +new Date();
-            const tick = () => {
-                el.style.opacity = (parseFloat(el.style.opacity) + (new Date().getTime() - last) / duration).toString();
-                last = +new Date();
-                if (parseFloat(el.style.opacity) < 1) {
-                    requestAnimationFrame(tick);
-                }
-            };
-            tick();
-        });
+    /**
+     * Sets the horizontal scroll position of the element.
+     * @param value - The scroll value.
+     * @returns The `Core` instance for chaining.
+     */
+    scrollLeft(value: number): this {
+        this.element.scrollLeft = value;
         return this;
     }
 
-    // Fade out the selected elements
-    fadeOut(duration: number = 400): this {
-        this.elements.forEach(el => {
-            el.style.opacity = "1";
-            let last = +new Date();
-            const tick = () => {
-                el.style.opacity = (parseFloat(el.style.opacity) - (new Date().getTime() - last) / duration).toString();
-                last = +new Date();
-                if (parseFloat(el.style.opacity) > 0) {
-                    requestAnimationFrame(tick);
-                } else {
-                    el.style.display = "none";
-                }
-            };
-            tick();
-        });
+    /**
+     * Fades in the element with an animation duration.
+     * @param duration - The animation duration (in ms).
+     * @returns The `Core` instance for chaining.
+     */
+    fadeIn(duration: string = "400"): this {
+        this.element.style.opacity = "0";
+        this.element.style.animation = "fadeIn";
+        this.element.style.display = "block";
+        this.element.style.animationDuration = duration;
         return this;
     }
 
-    // Get parent elements of each selected element
+    /**
+     * Fades out the element with an animation duration.
+     * @param duration - The animation duration (in ms).
+     * @returns The `Core` instance for chaining.
+     */
+    fadeOut(duration: string = "400"): this {
+        this.element.style.opacity = "1";
+        this.element.style.display = "none";
+        this.element.style.animationDuration = duration;
+        return this;
+    }
+
+    // ================================
+    // DOM Navigation
+    // ================================
+
+    /**
+     * Gets the parent of the current element.
+     * @returns A new `Core` instance for the parent element.
+     */
     parent(): Core {
-        const parents = this.elements.map(el => el.parentElement).filter(el => el) as HTMLElement[];
-        return new Core(parents);
+        return new Core(this.element.parentElement ?? this.element);
     }
 
-    // Get children elements of each selected element
-    children(): Core {
-        const children = this.elements.reduce((acc, el) => {
-            return acc.concat(Array.from(el.children) as HTMLElement[]);
-        }, [] as HTMLElement[]);
-        return new Core(children);
+    /**
+     * Gets the first child of the current element.
+     * @returns A new `Core` instance for the child element.
+     */
+    child(): Core {
+        return new Core(this.element.children.item(0) as HTMLElement ?? this.element);
     }
 
-    // Find descendant elements that match a selector within each selected element
+    /**
+     * Finds a descendant element that matches a selector within the current element.
+     * @param selector - The CSS selector to match.
+     * @returns A new `Core` instance for the matched element.
+     */
     find(selector: string): Core {
-        const foundElements = this.elements.reduce((acc, el) => {
-            return acc.concat(Array.from(el.querySelectorAll(selector)) as HTMLElement[]);
-        }, [] as HTMLElement[]);
-        return new Core(foundElements);
+        return new Core(this.element.querySelector(selector) as HTMLElement ?? this.element);
     }
 
-    // Get next sibling elements
-    next(): Core {
-        const nextSiblings = this.elements.map(el => el.nextElementSibling).filter(el => el) as HTMLElement[];
-        return new Core(nextSiblings);
-    }
+    // ================================
+    // Utility Methods
+    // ================================
 
-    // Get previous sibling elements
-    prev(): Core {
-        const previousSiblings = this.elements.map(el => el.previousElementSibling).filter(el => el) as HTMLElement[];
-        return new Core(previousSiblings);
-    }
-
-    // Replace the content of the selected elements
-    replaceWith(content: string | HTMLElement): this {
-        this.elements.forEach(el => {
-            if (typeof content === "string") {
-                el.outerHTML = content;
-            } else {
-                el.replaceWith(content);
-            }
-        });
+    /**
+     * Appends text to the current element.
+     * @param text - The text to append.
+     * @returns The `Core` instance for chaining.
+     */
+    appendText(text: string): this {
+        this.element.appendChild(document.createTextNode(text));
         return this;
     }
 
-    // Clone the selected elements
+    /**
+     * Clones the current element.
+     * @returns A new `Core` instance for the cloned element.
+     */
     clone(): Core {
-        const clones = this.elements.map(el => el.cloneNode(true) as HTMLElement);
-        return new Core(clones);
+        return new Core(this.element.cloneNode(true) as HTMLElement);
     }
 
-    // Trigger a custom event on the selected elements
-    trigger(eventType: string, data?: any): this {
+    /**
+     * Triggers a custom event on the current element.
+     * @param eventType - The event type to trigger.
+     * @param data - Additional data for the event.
+     * @returns The `Core` instance for chaining.
+     */
+    trigger(eventType: string, data: any): this {
         const event = new CustomEvent(eventType, { detail: data });
-        this.elements.forEach(el => el.dispatchEvent(event));
+        this.element.dispatchEvent(event);
         return this;
     }
 
-    // Bind data to the elements, storing in a custom attribute
-    data(key: string, value?: any): this | string | null {
-        if (value === undefined) {
-            return this.elements.length ? this.elements[0].getAttribute(`data-${key}`) : null;
-        }
-        this.elements.forEach(el => el.setAttribute(`data-${key}`, JSON.stringify(value)));
-        return this;
+    /**
+     * Gets or sets the value of a form element.
+     * @returns The value of the form element.
+     */
+    val(): string {
+        return this.element.ariaValueText ?? "";
     }
 
-    // Get or set the value of form elements
-    val(value?: string): this | string | null {
-        if (value === undefined) {
-            // If there is an element and it is a form element, return its current value
-            if (
-                this.elements.length &&
-                (this.elements[0] instanceof HTMLInputElement ||
-                    this.elements[0] instanceof HTMLTextAreaElement ||
-                    this.elements[0] instanceof HTMLSelectElement)
-            ) {
-                return this.elements[0].value;
-            }
-            return null; // Return null if no form element is found
-        }
-
-        // If a value is provided, set it for each form element
-        this.elements.forEach(el => {
-            if (
-                el instanceof HTMLInputElement ||
-                el instanceof HTMLTextAreaElement ||
-                el instanceof HTMLSelectElement
-            ) {
-                el.value = value;
-            }
-        });
+    replace(content: HTMLElement):this {
+        this.append(content).append(this.element);
         return this;
     }
 }

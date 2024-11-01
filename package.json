@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack/webpack.web.js",
-    "test": "jest"
+    "build:doc": "typedoc",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +17,10 @@
     "jest-environment-jsdom": "^29.7.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
-    "webpack": "^5.96.0",
+    "typedoc": "^0.26.10",
+    "typescript": "^5.6.3",
+    "webpack": "^5.96.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "webpack-merge": "^6.0.1"
   }

@@ -1,5 +1,5 @@
 // src/web/events.test.ts
-import { Events } from "./Events";
+import { Events } from "../Events";
 
 // Helper function to create a mock element
 function createMockElement(id: string): HTMLElement {

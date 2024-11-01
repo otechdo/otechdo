@@ -1,5 +1,5 @@
-// src/web/adaptive.test.ts
-import { Adaptive } from "./Adaptive";
+// src/web/Adaptive.test.ts
+import { Adaptive } from "../Adaptive";
 
 // Helper function to create mock elements
 function createMockElement(id: string): HTMLElement {

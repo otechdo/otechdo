@@ -1,0 +1,12 @@
+{
+  "entryPoints": ["src/core/Core.ts"],
+  "out": "docs",
+  "includeVersion": true,
+  "name": "Core Documentation",
+  "exclude": ["**/__tests__/**"],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "readme": "none"
+}
