@@ -1,5 +1,5 @@
 {
-  "name": "teams",
+  "name": "otechdo",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "author": "",
+  "author": "Willy Micieli",
   "license": "ISC",
   "description": "",
   "devDependencies": {
