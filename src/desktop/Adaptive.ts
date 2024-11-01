@@ -1,65 +1,39 @@
 // src/desktop/Adaptive.ts
+
+/**
+ * Adaptive class for desktop environments.
+ * Handles screen resolution and DPI scaling adjustments.
+ */
 export class Adaptive {
-    elements: HTMLElement[];
+    screenResolution: { width: number; height: number };
+    dpiScale: number;
 
-    constructor(elements: HTMLElement[]) {
-        this.elements = elements;
+    constructor() {
+        this.screenResolution = { width: window.screen.width, height: window.screen.height };
+        this.dpiScale = window.devicePixelRatio;
     }
 
     /**
-     * Ajuste les animations et les effets visuels en fonction de l’utilisation du CPU.
+     * Adjusts application layout based on screen resolution.
+     * Applies different layouts for various resolution ranges.
+     * @param layouts - Object with layout adjustments for specific screen resolutions.
      */
-    adaptToCPU(settings: { highUsageThreshold: number, onHighUsage: () => void, onNormalUsage: () => void }): this {
-        const monitorCPUUsage = () => {
-            const cpuUsage = Math.random() * 100; // Simulation d'une valeur d'utilisation CPU
-            if (cpuUsage > settings.highUsageThreshold) {
-                settings.onHighUsage();
-            } else {
-                settings.onNormalUsage();
-            }
-            requestAnimationFrame(monitorCPUUsage);
-        };
-        monitorCPUUsage();
-        return this;
-    }
-
-    /**
-     * Active le mode économie d'énergie, avec prise en charge conditionnelle de l'API Batterie.
-     * @param settings Configuration pour l'économie d'énergie
-     */
-    lowBatteryMode(settings: { batteryThreshold: number, onLowBattery: () => void, fallbackCheck?: () => boolean }): this {
-        if ('getBattery' in navigator) {
-            (navigator as any).getBattery().then((battery: any) => {
-                const checkBatteryLevel = () => {
-                    if (battery.level * 100 < settings.batteryThreshold) {
-                        settings.onLowBattery();
-                    }
-                };
-                checkBatteryLevel();
-                battery.addEventListener("levelchange", checkBatteryLevel);
-            });
-        } else if (settings.fallbackCheck) {
-            // En cas d'absence de l'API Batterie, utilisation d'une vérification de secours
-            const fallbackInterval = setInterval(() => {
-                if (settings.fallbackCheck!()) {
-                    settings.onLowBattery();
-                    clearInterval(fallbackInterval);
-                }
-            }, 60000); // Vérification toutes les 60 secondes
-        } else {
-            console.warn("La gestion de la batterie n'est pas supportée sur ce dispositif.");
+    adaptResolution(layouts: { [resolution: string]: () => void }) {
+        const resolutionKey = `${this.screenResolution.width}x${this.screenResolution.height}`;
+        if (layouts[resolutionKey]) {
+            layouts[resolutionKey]();
         }
-        return this;
     }
 
     /**
-     * Active ou désactive des effets visuels comme les animations en fonction des préférences utilisateur.
+     * Applies styles based on DPI scaling, useful for high-density displays.
+     * @param styles - Object with styles for various DPI scales.
      */
-    reduceVisualEffects(reduceAnimations: boolean): this {
-        this.elements.forEach(el => {
-            el.style.transition = reduceAnimations ? "none" : "";
-            el.style.animation = reduceAnimations ? "none" : "";
+    adaptDpi(styles: { [scale: string]: { [key: string]: string | number } }) {
+        const scaleKey = `${this.dpiScale}`;
+        const appliedStyles = styles[scaleKey] || {};
+        Object.entries(appliedStyles).forEach(([key, value]) => {
+            document.documentElement.style.setProperty(key, value as string);
         });
-        return this;
     }
 }

@@ -1,18 +1,33 @@
 // src/desktop/Events.ts
-export class Events {
-    elements: HTMLElement[];
 
-    constructor(elements: HTMLElement[]) {
-        this.elements = elements;
+/**
+ * Events class for desktop environments.
+ * Manages system-level or global events.
+ */
+export class Events {
+    private listeners: { [key: string]: (event: Event) => void } = {};
+
+    /**
+     * Adds a system-level event listener, such as window focus or resize.
+     * @param event - The event type (e.g., "focus", "resize").
+     * @param callback - The callback function to execute when the event is triggered.
+     */
+    addSystemEvent(event: string, callback: (event: Event) => void): this {
+        this.listeners[event] = callback;
+        window.addEventListener(event, callback);
+        return this;
     }
 
-    onKeyboardShortcut(keys: string[], callback: () => void): this {
-        const keySet = new Set(keys);
-        document.addEventListener("keydown", (event) => {
-            if (keySet.has(event.key)) {
-                callback();
-            }
-        });
+    /**
+     * Removes a previously added system-level event listener.
+     * @param event - The event type (e.g., "focus", "resize").
+     */
+    removeSystemEvent(event: string): this {
+        const callback = this.listeners[event];
+        if (callback) {
+            window.removeEventListener(event, callback);
+            delete this.listeners[event];
+        }
         return this;
     }
 }
