@@ -1,32 +1,45 @@
-import Web from "../index-web";
-
-describe("Web.createElement", () => {
-    test("should create a div element with text content", () => {
-        const element = Web.createElement("div", { className: "test-div" }, "Hello, World!") as HTMLElement;
-        expect(element.tagName).toBe("DIV");
-        expect(element.className).toBe("test-div");
-        expect(element.textContent).toBe("Hello, World!");
+// src/web/core.test.ts
+import { Core } from '../core/Core';
+import { expect } from "@jest/globals";
+describe('Core Class', () => {
+    // Set up and tear down a DOM structure for testing
+    beforeEach(() => {
+        document.body.innerHTML = `
+            <div id="test-div" class="initial-class"></div>
+            <input type="text" id="test-input" value="initial value" />
+        `;
     });
 
-    test("should create an element with inline styles", () => {
-        const element = Web.createElement("p", { style: { color: "red" } }, "Styled Text") as HTMLElement;
-        expect(element.style.color).toBe("red");
+    test('should apply CSS styles to elements', () => {
+        const core = new Core('#test-div');
+        core.css({ color: 'red', fontSize: '16px' });
+
+        const element = document.getElementById('test-div');
+        expect(element?.style.color).toBe('red');
+        expect(element?.style.fontSize).toBe('16px');
     });
 
-    test("should create a fragment with multiple children", () => {
-        const fragment = Web.Fragment(
-            Web.createElement("p", null, "Child 1"),
-            Web.createElement("p", null, "Child 2")
-        ) as DocumentFragment;
+    describe('val method', () => {
+        test('should get the value of an input element', () => {
+            const core = new Core('#test-input');
+            const value = core.val();
 
-        expect(fragment.childNodes.length).toBe(2);
-        expect((fragment.childNodes[0] as HTMLElement).textContent).toBe("Child 1");
-        expect((fragment.childNodes[1] as HTMLElement).textContent).toBe("Child 2");
-    });
+            expect(value).toBe('initial value');
+        });
 
-    test("should add global style", () => {
-        Web.addGlobalStyle("body { background-color: black; }");
-        const styles = Array.from(document.head.getElementsByTagName("style"));
-        expect(styles.some(style => style.innerText.includes("background-color: black"))).toBe(true);
+        test('should set the value of an input element', () => {
+            const core = new Core('#test-input');
+            core.val('new value');
+
+            const input = document.getElementById('test-input') as HTMLInputElement;
+            expect(input.value).toBe('new value');
+        });
+
+        test('should return null when no elements are matched', () => {
+            const core = new Core('#nonexistent-element');
+            const value = core.val();
+
+            expect(value).toBeNull();
+        });
     });
 });
