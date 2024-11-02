@@ -1,12 +1,12 @@
 {
   "name": "otechdo",
   "readme": "README.md",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/otechdo/otechdo/issues"
   },
   "homepage": "https://github.com/otechdo/otechdo",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "dist/otechdo.js",
   "types": "src/types/otechdo.d.ts",
   "contributors": [
