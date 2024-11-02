@@ -1,12 +1,6 @@
 {
-  "entryPoints": ["src/index.ts"],
   "out": "docs",
-  "includeVersion": true,
-  "name": "Otechdo Documentation",
-  "exclude": ["**/__tests__/**"],
-  "excludePrivate": true,
-  "excludeProtected": true,
-  "excludeExternals": true,
-  "hideGenerator": true,
-  "readme": "none"
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "theme": "default"
 }

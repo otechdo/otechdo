@@ -388,11 +388,12 @@ export class Otechdo {
      * @returns The `Otechdo` instance for chaining.
      */
     setAttributes(attributes: { [key: string]: string }): this {
-        Object.entries(attributes).forEach(([key, value]) => {
+        Object.entries(attributes).forEach(([key, value]: [string, any]) => {
             this.element.setAttribute(key, value);
         });
         return this;
     }
+
     /**
      * Toggles the text content of the element between two values.
      * @param text1 - The first text value.
@@ -1986,7 +1987,7 @@ export class Otechdo {
      * @returns The `Otechdo` instance for chaining.
      */
     setAriaAttributes(attributes: { [key: string]: string }): this {
-        Object.entries(attributes).forEach(([key, value]) => {
+        Object.entries(attributes).forEach(([key, value]: [string, any]) => {
             this.element.setAttribute(`aria-${key}`, value);
         });
         return this;
@@ -3800,26 +3801,23 @@ export class Otechdo {
 }
 
 /**
- *
- * Manipulate the elemement
+ * Manipulate the element
  *
  * @param e `HTMLElement`
- *
+ * @returns `Otechdo` instance
  */
-export const app = (e:HTMLElement): Otechdo => {
+export const app = (e: HTMLElement): Otechdo => {
     return new Otechdo(e);
 };
 
 /**
+ * Select an element if it exists to manipulate it
  *
- * Select an element if exist to manipulate it
- *
- * @param selector `string`
- *
+ * @param selector `string` - The CSS selector of the element to select
+ * @returns `Otechdo` instance
  */
-export const o = (selector:string): Otechdo => {
+export const o = (selector: string): Otechdo => {
     const el = document.querySelector(selector) as HTMLElement ?? document.createElement("div");
     return new Otechdo(el);
 };
-
 

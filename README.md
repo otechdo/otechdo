@@ -1,3 +1,3 @@
-# Otechdo
+# Otechdo
 
-a perso lib in development
+[Documentation](https://otechdo.github.io/otechdo/)

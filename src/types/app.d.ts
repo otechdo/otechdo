@@ -1,10 +1,11 @@
-import {Otechdo} from "../otechdo";
+import { Otechdo } from "../otechdo";
+
 declare global {
     /**
-     *
      * Manipulate the element passed in parameter
      *
-     * @param e `HTMLElement`
+     * @param e `HTMLElement` - The element to manipulate
+     * @returns `Otechdo` instance
      */
-    export function app(e:HTMLElement): Otechdo;
+    export function app(e: HTMLElement): Otechdo;
 }

@@ -6,13 +6,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "lib": ["ES2022", "DOM"]
   },
-  "include": [
-    "src/types/app.d.ts",
-    "src/types/o.d.ts",
-    "src/otechdo.ts",
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules"
   ]
