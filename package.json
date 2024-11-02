@@ -6,7 +6,7 @@
     "url": "https://github.com/otechdo/otechdo/issues"
   },
   "homepage": "https://github.com/otechdo/otechdo",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "main": "dist/otechdo.js",
   "types": "src/types/otechdo.d.ts",
   "contributors": [
@@ -14,7 +14,7 @@
   ],
   "files": [
     "dist",
-    "src/types/otechdo.d.ts"
+    "src"
   ],
   "repository": {
     "url": "https://github.com/otechdo/otechdo"

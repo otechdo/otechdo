@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "ES6",
+    "target": "ES2023",
+    "module": "ESNext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -9,7 +9,7 @@
     "outDir": "dist",
     "lib": ["ES2022", "DOM"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src"],
   "exclude": [
     "node_modules"
   ]
